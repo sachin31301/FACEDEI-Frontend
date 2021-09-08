@@ -107,7 +107,7 @@ const webcamRef = React.useRef(null);
       const file = DataURIToBlob(picture)
      const formData = new FormData();
        formData.append('picture', file, 'image.jpg')
-       fetch('http://127.0.0.1:5000/imageshow',{
+       fetch('https://facedei.herokuapp.com/imageshow',{
             method: 'POST',
             body:  formData,
         })

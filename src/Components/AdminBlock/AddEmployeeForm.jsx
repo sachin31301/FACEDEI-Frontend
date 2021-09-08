@@ -64,7 +64,7 @@ const AddEmployeeForm = props => {
         formData.append("nameOfEmployee", name)
         formData.append("image", picture.files[0])
 
-        fetch('http://127.0.0.1:5000/add_employee',{
+        fetch('https://facedei.herokuapp.com/add_employee',{
             method: 'POST',
             body:  formData,
         })

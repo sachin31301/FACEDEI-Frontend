@@ -71,7 +71,7 @@ const SearchBar = props => {
     const searchForEmployee = () => {
         const name = document.getElementById('searchForEmployee').value.toLowerCase()
         if(name){
-            fetch(`http://127.0.0.1:5000/get_employee/${name}`)
+            fetch(`https://facedei.herokuapp.com/get_employee/${name}`)
             .then(response => response.json())
             .then(response => {
                 console.log(response)

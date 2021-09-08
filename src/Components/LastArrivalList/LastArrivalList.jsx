@@ -47,10 +47,10 @@ const LastArrivalList = (props) => {
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
        // headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
-        headers.append('Origin','http://localhost:3000');
+        headers.append('Origin','https://facedei.herokuapp.com/');
         if (!isListIsLoad){
             
-            fetch('http://127.0.0.1:5000/get_5_last_entries',{
+            fetch('https://facedei.herokuapp.com/get_5_last_entries',{
                 crossDomain:true,
  
               headers: {'Content-Type':'application/json'},

@@ -43,7 +43,7 @@ const EmployeeToDeleteList = props => {
 
     // Get the list of all employee from the API
     const getEmployeeList = () => {
-        fetch('http://127.0.0.1:5000/get_employee_list')
+        fetch('https://facedei.herokuapp.com/get_employee_list')
             .then(response => response.json())
             .then (response =>{
                 if(!isEmployeeListLoaded){
@@ -68,7 +68,7 @@ const EmployeeToDeleteList = props => {
 
         // Function that send the employee's name to delete
         const deleteEmployee = name => {
-            fetch(`http://127.0.0.1:5000/delete_employee/${name}`)
+            fetch(`https://facedei.netlify.app/delete_employee/${name}`)
                 .then(response => response.json())
                 .then(() => setIsEmployeeListLoaded(false))
         }
