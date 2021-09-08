@@ -20,7 +20,7 @@ function App() {
 		isAuthenticated,
 		isLoading,
 		user}=useAuth0()
-	const admin=["sachin31301@gmail.com"];
+	const admin=["sachin31301@gmail.com","admin@gmail.com"];
 	
 
 	var isadmin=false;
