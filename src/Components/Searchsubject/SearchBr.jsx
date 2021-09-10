@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const SearchBarResult = props => {
+const SearchBr = props => {
     // * ---------- STYLES ---------- *
     const OneResult = styled.div`
         padding: 15px;
@@ -25,9 +25,9 @@ const SearchBarResult = props => {
             <OneResult>
                 <UlList>
                     
-                    <ListItem><b>Subject:</b> <i>{ props.result[0] } </i></ListItem>
+                    <ListItem><b>Name:</b> <i>{ props.result[0] } </i></ListItem>
                     <ListItem><b>Arrival time:</b> <i>{ props.result[1] } </i></ListItem>
-
+                    
 
                    
                 </UlList>
@@ -36,4 +36,4 @@ const SearchBarResult = props => {
     );
 };
 
-export default SearchBarResult;
+export default SearchBr;

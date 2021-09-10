@@ -28,6 +28,7 @@ const LastArrivalItems = props => {
                     <ListItem><b>Date:</b> <i>{ props.result[1] } </i></ListItem>
                     <ListItem><b>Name:</b> <i>{ props.result[0] } </i></ListItem>
                     <ListItem><b>Arrival time:</b> <i>{ props.result[2] } </i></ListItem>
+                    <ListItem><b>Subject:</b> <i>{ props.result[3] } </i></ListItem>
                     
                 </UlList>
             </OneResult>

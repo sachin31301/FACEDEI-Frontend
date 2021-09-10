@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // * --------- COMPONENTS --------- *
-import SearchBarResult from './SearchBarResult'
-import Absent from './Absent';
+import SearchBr from './SearchBr'
 
 
-const SearchBar = props => {
+
+const SearchB = props => {
 
     // * ---------- STATES ---------- *
     const [employeeList, setEmployeeList] = useState([]);
@@ -70,11 +70,11 @@ const SearchBar = props => {
     `
 
 
-    const searchForEmployee = () => {
-        const name = document.getElementById('searchForEmployee').value.toLowerCase()
-        const date= document.getElementById('searchForDate').value.toLowerCase()
-        if(name){
-            fetch(`https://facedei.herokuapp.com/get_employee?name=${name}&date=${date}`)
+    const searchForSubjectf = () => {
+        const subj = document.getElementById('searchForSubject').value.toLowerCase()
+        const date= document.getElementById('searchForDater').value.toLowerCase()
+        if(subj){
+            fetch(`https://facedei.herokuapp.com/get_subject?subj=${subj}&date=${date}`)
             .then(response => response.json())
             .then(response => {
                 console.log(response)
@@ -90,15 +90,13 @@ const SearchBar = props => {
            setEmployeeList(['No name find...'])
         }
     }
-    const Myresult=props=>{
-        return <Absent list={props.list}/>
-    }
+   
     const SearchListAnswer = props => {
         const plist=[]
         let obj = props.answer
         let answerList = Object.keys(obj).map(key => {
             plist.push(obj[key][0])
-            return <SearchBarResult result={ obj[key] } />
+            return <SearchBr result={ obj[key] } />
         })
         console.log(answerList);
         console.log(plist);
@@ -113,12 +111,12 @@ const SearchBar = props => {
 
     return (
             <SearchSection>
-				<h2>Search for a Student</h2>
+				<h2>Search student present</h2>
                 <SearchContainer>
                     <FormDiv>
-                        <SearchInput name='searchForEmployee' id='searchForEmployee' placeholder='Enter Name of Student' type="text"/>
-                        <SearchInput name='searchForDate' id='searchForDate' placeholder='Enter Date in YYYY-MM-DD' type="text"/>
-                        <SearchButton onClick={ searchForEmployee } id='searchButton'>Search</SearchButton>
+                        <SearchInput name='searchForSubject' id='searchForSubject' placeholder='Enter subject' type="text"/>
+                        <SearchInput name='searchForDater' id='searchForDater' placeholder='Enter Date in YYYY-MM-DD' type="text"/>
+                        <SearchButton onClick={ searchForSubjectf } id='searchButton'>Search</SearchButton>
                     </FormDiv>
                     <AnswerDiv>
                         {/* Show user's data if user found */}
@@ -132,4 +130,4 @@ const SearchBar = props => {
     );
 };
 
-export default SearchBar;
+export default SearchB;

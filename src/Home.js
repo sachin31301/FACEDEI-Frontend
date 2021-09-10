@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { useAuth0 } from '@auth0/auth0-react'
 import Navbar  from './Components/Navbar'
 import { useMediaQuery } from 'react-responsive'
+import SearchB from './Components/Searchsubject/SearchB'
 
 
 
@@ -97,6 +98,7 @@ function App() {
 				<AdminBlock ism={mob} />
 				
 				<SearchBar ism={mob} />
+				<SearchB ism={mob} />
 				
 				
 			</MainContainer>
