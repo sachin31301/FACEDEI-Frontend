@@ -68,7 +68,7 @@ const EmployeeToDeleteList = props => {
 
         // Function that send the employee's name to delete
         const deleteEmployee = name => {
-            fetch(`https://facedei.netlify.app/delete_employee/${name}`)
+            fetch(`https://facedei.herokuapp.com/delete_employee/${name}`)
                 .then(response => response.json())
                 .then(() => setIsEmployeeListLoaded(false))
         }
