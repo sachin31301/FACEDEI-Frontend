@@ -10,6 +10,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import Navbar  from './Components/Navbar'
 import { useMediaQuery } from 'react-responsive'
 import SearchB from './Components/Searchsubject/SearchB'
+import SearchSar from './Components/Searchstud/SearchSar'
+import TimeTable from './Components/TimeTable'
 
 
 
@@ -77,6 +79,7 @@ function App() {
 			<Fragment>
 			<TitleOne>Face Recognition Based Attendance</TitleOne>
 			<Navbar check={isadmin}></Navbar>
+			<TimeTable/>
 			<MainContainer>
 				
 				<VideoFeed ism={mob}/>
@@ -99,6 +102,7 @@ function App() {
 				
 				<SearchBar ism={mob} />
 				<SearchB ism={mob} />
+				<SearchSar ism={mob}/>
 				
 				
 			</MainContainer>
