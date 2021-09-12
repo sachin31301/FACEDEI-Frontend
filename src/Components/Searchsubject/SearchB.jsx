@@ -107,7 +107,7 @@ const SearchB = props => {
         const subj = document.getElementById('searchForSubject').value.toLowerCase()
         const date= document.getElementById('searchForDater').value.toLowerCase()
         if(subj){
-            fetch(`http://127.0.0.1:5000/get_studcount?subj=${subj}&date=${date}`)
+            fetch(`https://facedei.herokuapp.com/get_studcount?subj=${subj}&date=${date}`)
             .then(response => response.json())
             .then(response => {
                 console.log(response)

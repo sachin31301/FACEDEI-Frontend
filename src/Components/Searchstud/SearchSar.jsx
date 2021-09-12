@@ -109,7 +109,7 @@ const SearchSar = props => {
         const subj = document.getElementById('searchForSubj').value.toLowerCase()
         const sname= document.getElementById('searchForStud').value.toLowerCase()
         if(subj){
-            fetch(`http://127.0.0.1:5000/get_subcount?subj=${subj}&sname=${sname}`)
+            fetch(`https://facedei.herokuapp.com/get_subcount?subj=${subj}&sname=${sname}`)
             .then(response => response.json())
             .then(response => {
                 console.log(response)
