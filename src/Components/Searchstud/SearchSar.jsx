@@ -12,6 +12,7 @@ const SearchSar = props => {
     const [employeeList, setEmployeeList] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const [unchoosen, setunchosen] = useState([]);
+    const[count,setcount]=useState(0);
     const val=80;
 
     // * ---------- STYLE ---------- *
@@ -23,7 +24,7 @@ const SearchSar = props => {
         flex-direction: column;
         margin: 40px 10px;
         background-color: #ffffff;
-        padding: 20px;
+        padding: 20px ;
         width: 40%;
         h2 {
             margin-top : 0;
@@ -59,7 +60,7 @@ const SearchSar = props => {
      border-radius: 3px;
      color: white;
      font-weight: bold;
-     margin:0;
+     margin:10px;
      cursor: pointer;
 `
     const FormDiv = styled.div`
@@ -68,6 +69,19 @@ const SearchSar = props => {
     align-items: center;
     min-width: 90%;
     `
+    const ButtonDiv = styled.div`
+    display: flex;
+  justify-content: space-between;
+  padding: 15px 15px 15px 15px;
+  justify-content: space-evenly;
+  margin: auto;
+    `
+    const H3AddEmployee = styled.h3`
+    margin-left:10px
+    text-align:center
+    display: flex;
+    align-items: center;
+`
 
 
     const searchForSubjectf = () => {
@@ -80,6 +94,27 @@ const SearchSar = props => {
                 console.log(response)
                 if(response){
                    setEmployeeList(response)
+                } else {
+                  setErrorMessage(response.Error)
+                  // setLoading(false)
+                }
+            })
+        }
+        else{
+           setEmployeeList(['No name find...'])
+        }
+    }
+
+    const SearchForCount=()=>{
+        const subj = document.getElementById('searchForSubj').value.toLowerCase()
+        const sname= document.getElementById('searchForStud').value.toLowerCase()
+        if(subj){
+            fetch(`http://127.0.0.1:5000/get_subcount?subj=${subj}&sname=${sname}`)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                if(response){
+                   setcount(response)
                 } else {
                   setErrorMessage(response.Error)
                   // setLoading(false)
@@ -116,12 +151,16 @@ const SearchSar = props => {
                     <FormDiv>
                         <SearchInput name='searchForStud' id='searchForStud' placeholder='Enter Student Name' type="text"/>
                         <SearchInput name='searchForSubj' id='searchForSubj' placeholder='Enter subject' type="text"/>
-                       
+                        <ButtonDiv>
                         <SearchButton onClick={ searchForSubjectf } id='searchButton'>Search</SearchButton>
+                        
+                        <SearchButton onClick={ SearchForCount } id='searchButton'>Count</SearchButton>
+                        </ButtonDiv>
                     </FormDiv>
                     <AnswerDiv>
                         {/* Show user's data if user found */}
                         { ( employeeList && !employeeList['error'] ) ?(<> <SearchListAnswer answer={ employeeList } />  </>): null }
+                        { ( count && !employeeList['error'] ) ?(<><H3AddEmployee>Present on {count} days out of 28 days </H3AddEmployee> </>): null }
 
                         {/* Show an error if user is not found */}
                         { employeeList['error'] ? <p>User not found...</p> : null }

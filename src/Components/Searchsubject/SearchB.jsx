@@ -12,6 +12,7 @@ const SearchB = props => {
     const [employeeList, setEmployeeList] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const [unchoosen, setunchosen] = useState([]);
+    const[count,setcount]=useState(0);
     const val=80;
 
     // * ---------- STYLE ---------- *
@@ -59,7 +60,7 @@ const SearchB = props => {
      border-radius: 3px;
      color: white;
      font-weight: bold;
-     margin:0;
+     margin:10px;
      cursor: pointer;
 `
     const FormDiv = styled.div`
@@ -68,7 +69,19 @@ const SearchB = props => {
     align-items: center;
     min-width: 90%;
     `
-
+    const ButtonDiv = styled.div`
+    display: flex;
+  justify-content: space-between;
+  padding: 15px 15px 15px 15px;
+  justify-content: space-evenly;
+  margin: auto;
+    `
+    const H3AddEmployee = styled.h3`
+    margin-left:10px
+    text-align:center
+    display: flex;
+    align-items: center;
+`
 
     const searchForSubjectf = () => {
         const subj = document.getElementById('searchForSubject').value.toLowerCase()
@@ -80,6 +93,26 @@ const SearchB = props => {
                 console.log(response)
                 if(response){
                    setEmployeeList(response)
+                } else {
+                  setErrorMessage(response.Error)
+                  // setLoading(false)
+                }
+            })
+        }
+        else{
+           setEmployeeList(['No name find...'])
+        }
+    }
+    const SearchForCounter=()=>{
+        const subj = document.getElementById('searchForSubject').value.toLowerCase()
+        const date= document.getElementById('searchForDater').value.toLowerCase()
+        if(subj){
+            fetch(`http://127.0.0.1:5000/get_studcount?subj=${subj}&date=${date}`)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                if(response){
+                   setcount(response)
                 } else {
                   setErrorMessage(response.Error)
                   // setLoading(false)
@@ -116,12 +149,15 @@ const SearchB = props => {
                     <FormDiv>
                         <SearchInput name='searchForSubject' id='searchForSubject' placeholder='Enter subject' type="text"/>
                         <SearchInput name='searchForDater' id='searchForDater' placeholder='Enter Date in YYYY-MM-DD' type="text"/>
+                        <ButtonDiv>
                         <SearchButton onClick={ searchForSubjectf } id='searchButton'>Search</SearchButton>
+                        <SearchButton onClick={ SearchForCounter } id='searchButtonforct'>Count</SearchButton>
+                        </ButtonDiv>
                     </FormDiv>
                     <AnswerDiv>
                         {/* Show user's data if user found */}
                         { ( employeeList && !employeeList['error'] ) ?(<> <SearchListAnswer answer={ employeeList } />  </>): null }
-
+                        { ( count && !employeeList['error'] ) ?(<> <H3AddEmployee>Total Students Present :- {count}  </H3AddEmployee> </>): null }
                         {/* Show an error if user is not found */}
                         { employeeList['error'] ? <p>User not found...</p> : null }
                     </AnswerDiv>
