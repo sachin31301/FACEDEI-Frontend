@@ -13,6 +13,7 @@ const SearchB = props => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [unchoosen, setunchosen] = useState([]);
     const[count,setcount]=useState(0);
+    const[subount,setsubcount]=useState(0);
     const val=80;
 
     // * ---------- STYLE ---------- *
@@ -84,6 +85,7 @@ const SearchB = props => {
 `
 
     const searchForSubjectf = () => {
+        setsubcount(0)
         const subj = document.getElementById('searchForSubject').value.toLowerCase()
         const date= document.getElementById('searchForDater').value.toLowerCase()
         if(subj){
@@ -104,6 +106,7 @@ const SearchB = props => {
         }
     }
     const SearchForCounter=()=>{
+        setsubcount(1)
         const subj = document.getElementById('searchForSubject').value.toLowerCase()
         const date= document.getElementById('searchForDater').value.toLowerCase()
         if(subj){
@@ -156,8 +159,8 @@ const SearchB = props => {
                     </FormDiv>
                     <AnswerDiv>
                         {/* Show user's data if user found */}
-                        { ( employeeList && !employeeList['error'] ) ?(<> <SearchListAnswer answer={ employeeList } />  </>): null }
-                        { ( count && !employeeList['error'] ) ?(<> <H3AddEmployee>Total Students Present :- {count}  </H3AddEmployee> </>): null }
+                        { ( employeeList && !employeeList['error'] &&!subount) ?(<> <SearchListAnswer answer={ employeeList } />  </>): null }
+                        { ( count && !employeeList['error'] &&subount) ?(<> <H3AddEmployee>Total Students Present :- {count}  </H3AddEmployee> </>): null }
                         {/* Show an error if user is not found */}
                         { employeeList['error'] ? <p>User not found...</p> : null }
                     </AnswerDiv>
